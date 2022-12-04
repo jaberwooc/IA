@@ -1,6 +1,5 @@
-import tensorflow as tf
-import numpy as np
 import speech_recognition as sr
+import numpy as np
 import pyttsx3
 import datetime
 import pywhatkit
@@ -197,13 +196,23 @@ def run():
         
         elif "fastest" in rec:
             print(dict_table.Pos())
+        elif "prediccion de fases " in rec:
+            speak(prediccion_fasesgrps)
+
+        elif "prediccion de octavos " in rec:
+            speak(get_winner(df_fixture_knockout))
+
+        elif "prediccion de cuartos " in rec:
+            update_table(df_fixture_knockout, df_fixture_quarter)
+            speak(get_winner(df_fixture_quarter))
+
+        elif "prediccion de semifinal " in rec:
+            update_table(df_fixture_quarter, df_fixture_semi)
+            speak(get_winner(df_fixture_semi))
+
+        elif "prediccion de quien ganara  " in rec:
+            update_table(df_fixture_semi, df_fixture_final)
+            speak(get_winner(df_fixture_final))
 
 
-prediccion_fasesgrps()
-get_winner(df_fixture_knockout)
-update_table(df_fixture_knockout, df_fixture_quarter)
-get_winner(df_fixture_quarter)
-update_table(df_fixture_quarter, df_fixture_semi)
-get_winner(df_fixture_semi)
-update_table(df_fixture_semi, df_fixture_final)
-get_winner(df_fixture_final)
+run()
